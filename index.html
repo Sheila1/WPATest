@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <link href="utiles/style.css" rel="stylesheet" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#26576e">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="#">
+
+
+    <!-- ios support -->
+    <meta name="apple-mobile-web-app-title" content="AdamasMovil" />
+    <link rel="apple-touch-icon" href="/utiles/img/Icon96.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="##26576e">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <title>Adamás Económico Móvil</title>
+</head>
+<body>
+
+    <button id="btnInstalar" aria-label="Instalar" hidden>Instalar app</button>
+    <div class="contenedor">
+        <!--<br />
+        <a href="self.close()" class="cerrar">X</a>-->
+        <br />
+        <br />
+        <div class="contenedorCodigo">
+            <span id="codigo1">0</span>
+            <span id="codigo2">0</span>
+            <span id="codigo3">0</span>
+            <span id="codigo4">0</span>
+            <span id="codigo5">0</span>
+        </div>
+        <br />
+        <br />
+        <div class="contenedorCirculo">
+            <svg width="280" height="280">
+                <defs>
+                    <linearGradient id="colorGradiente" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a1324a"></stop>
+                        <stop offset="100%" stop-color="#26576e"></stop>
+                    </linearGradient>
+                </defs>
+                <circle cx="150" cy="150" r="100" stroke="#ccc" stroke-width="14" fill="transparent"></circle>
+                <circle id="circuloAnimado" class="circulo" cx="150" cy="150" r="100" transform="rotate(-90 150 150)"></circle>
+                <text id="textoCirculo" stroke-width="7" x="150" y="55%" text-anchor="middle" font-size="40px" fill="url(#colorGradiente)" font-family="Arial" font-weight="600"></text>
+            </svg>
+        </div>
+        <br />
+    </div>
+
+    <!--script-->
+    <script src="sw.js"></script>
+
+
+    <script src="utiles/instalacion.js"></script>
+    <script src="utiles/script.js"></script>
+    <script>
+
+        //registro service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .then(registro => console.log('Service worker registrado', registro))
+                .catch(error => console.log('Service worker no registrado', error));
+        }
+        else {
+            console.log('Service workers no es soportado por el cliente.');
+        }
+
+    </script>
+</body>
+</html>
